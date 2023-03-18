@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  server:
+    image: bind9
+    container_name: dns_server
+    volumes:
+      - ./bind/etc:/etc/bind
+      - ./bind/var:/var/cache/bind
+     networks:
+      dns_net:
+        ipv4_address: 172.28.0.2
+
+  client:
+    image: alpine
+    container_name: dns_client
+    networks:
+      dns_net:
+
+  nerworks:
+    dns_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1           

@@ -1,0 +1,5 @@
+WWW      IN      A     172.28.0.2
+
+@        IN      NS    ns1.tierramedia.com
+
+ftp      IN      CNAME www.tierramedia.com.
